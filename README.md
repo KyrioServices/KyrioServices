@@ -31,3 +31,13 @@ To retrieve all providers that serve a particular business address, the request 
 |`accept`|string||application/json|Specifies the request format as json or xml.  The default is json.|accept:application/xml|
 |`enable-test-mock`|bool||false|Enables test requests whih return mock responses. This can be used to test connectivity and that data is returned.|enable-test-mock:true|
 |`enable-test-error`|bool||false|Works in conjunction with enable-test-mock. Enables random errors (up to 10% of requests) while making test requests.|enable-test-mock:true|
+
+### Request Parameters
+|Parameter Name|Type|Required|Max Length|Default|Description|
+|---|---|---|---|---|---|
+|`address_line1`|string|yes|60||Street number, pre-directional, street name, suffix, post-directional<br>123 N Main St<br>234 Michigan Ave SW|
+|`address_line2`|string||60||Secondary address line such as Apt, Suite or Lot|
+|`city`|string||60||City or town name|
+|`state`|string||2||For US addresses, use the standard 2-character state abbreviation|
+|`postal_code`|string||10||For US addresses, use the 5-digit ZIP code|
+|`country_code`|string||2|US|Use 'US' to indicate US addresses. Refer to the [ISO 3166 Country Code Standard](https://www.iso.org/iso-3166-country-codes.html) for non-US addresses|
