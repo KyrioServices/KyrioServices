@@ -17,9 +17,16 @@ An error response will include a status code along with a message.  A list of er
 ## Accessing the API
 In order to use the API, you will need an account with Kyrio. Please contact Kyrio and specify "Online Services" as the line of business. https://www.kyrio.com/contact/
 
-## Submitting Requests
+## SDK's
+You can use our available SDK's that are available in C#, Java, and Node. This manages serialization/deserialization, URL management, API version and so forth.
 
-To retrieve all providers that serve a particular business address, the request should be submitted to the following location using the GET command.  (Note: The POST command cannot be used.)
+* C#
+* Java
+* NodeJS
+
+## Submitting Requests Directly
+You may also code directly against the API without using the SDK if you prefer.
+Request should be submitted to the following location using the GET command.  (Note: The POST command cannot be used.)
 
 ## API Description
 
@@ -41,3 +48,22 @@ To retrieve all providers that serve a particular business address, the request 
 |`state`|string||2||For US addresses, use the standard 2-character state abbreviation|
 |`postal_code`|string||10||For US addresses, use the 5-digit ZIP code|
 |`country_code`|string||2|US|Use 'US' to indicate US addresses. Refer to the [ISO 3166 Country Code Standard](https://www.iso.org/iso-3166-country-codes.html) for non-US addresses|
+
+### Response Parameters
+| JSON Element | XML Element  | Always<br>Returned| Type | Max Length | Description
+|---|---|---|---|---|---|
+| `provider_id` | `ProviderId`|yes |string|10|a 4-digit identifier will be returned for each provider.|
+|`provider`|`Provider`|yes|string|30|Company name associated with the provider id|
+|`location_id`|`LocationId`||string|40|Only returned if the provider has assigned a unique location identifier (aka housekey) for the address|
+|`location_type`|`LocationType`|yes|string|40|This field will contain the value ‘residential’ or ‘business’ if the provider characterizes the location.  Otherwise a value of ‘unknown’ will be returned.|
+|`site_status`|`SiteStatus`|yes|string|20|For MSO providers, this will contain one of the values in the table below:|
+
+#### SiteStatus values
+|Value|Description  |
+|--|--|
+|`none`	  |  Indicates that the MSO did not specify a site status  |
+|`on_net`| Indicates that one or more cable services are currently available at the address|
+|`near_net`|Indicates the address is near existing cable infrastructure and can likely be served at a reasonable cost/effort |
+|`off_net`|Indicates the MSO has previously surveyed the site and determined it cannot be served|
+|`survey_req`|Indicates the MSO must conduct additional analysis to determine if the site can be served|
+|`proximity`|Indicates that the MSO serves the general area such as the 5-digit ZIP code or locations within a configurable distance (such as 60-feet or 200-feet).  The MSO should be contacted for additional information about the serviceability of a location identified as ‘proximity’.|
