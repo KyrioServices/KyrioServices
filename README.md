@@ -37,7 +37,7 @@ Request should be submitted to the following location using the GET command.  (N
 |`client-id`|string|yes||Specifies the 6-digit ID provided by Kyrio to requestor|client-id:123456|
 |`accept`|string||application/json|Specifies the request format as json or xml.  The default is json.|accept:application/xml|
 |`enable-test-mock`|bool||false|Enables test requests whih return mock responses. This can be used to test connectivity and that data is returned.|enable-test-mock:true|
-|`enable-test-error`|bool||false|Works in conjunction with enable-test-mock. Enables random errors (up to 10% of requests) while making test requests.|enable-test-mock:true|
+|`enable-test-error`|bool||false|Works in conjunction with enable-test-mock. Enables random errors (up to 10% of requests) while making test requests.|enable-test-error:true|
 
 ### Request Parameters
 |Parameter Name|Type|Required|Max Length|Default|Description|
