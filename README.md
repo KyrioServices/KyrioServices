@@ -1,7 +1,4 @@
-# KyrioServices
-The 10,000 foot view of the Kyrio API
-
-## Overview
+# Overview
 The Kyrio Connection Suite (KCS) is a digital commerce tool that allows users to identify which multisystem operators (MSOs) may offer voice, video, data or other services to a particular business address; obtain additional details about available cable services from MSOs; and identify providers of and details about other business services as may be offered from time to time.  
 
 This focus of this specification is the Cable Business Serviceability API which allows an authorized user to identify the cable company or companies that serve a specific business address.
@@ -27,9 +24,9 @@ You can use our available SDK's that are available in C#, Java, and Node. This m
 You may also code directly against the API without using the SDK if you prefer.
 Request should be submitted to the API URL using the GET command.  (The POST command cannot be used.)
 
-## API Description
+# API Description
 
-### Request Headers
+## Request Headers
 
 |Header|Type|Required|Default|Description|Examples|
 |------|----|--------|-------|-----------|--------|
@@ -38,7 +35,7 @@ Request should be submitted to the API URL using the GET command.  (The POST com
 |`enable-test-mock`|bool||false|Enables test requests whih return mock responses. This can be used to test connectivity and that data is returned.|enable-test-mock:true|
 |`enable-test-error`|bool||false|Works in conjunction with enable-test-mock. Enables random errors (up to 10% of requests) while making test requests.|enable-test-error:true|
 
-### Request Parameters
+## Request Parameters
 |Parameter Name|Type|Required|Max Length|Default|Description|
 |---|---|---|---|---|---|
 |`address_line1`|string|yes|60||Street number, pre-directional, street name, suffix, post-directional<br>123 N Main St<br>234 Michigan Ave SW|
@@ -48,7 +45,7 @@ Request should be submitted to the API URL using the GET command.  (The POST com
 |`postal_code`|string||10||For US addresses, use the 5-digit ZIP code|
 |`country_code`|string||2|US|Use 'US' to indicate US addresses. Refer to the [ISO 3166 Country Code Standard](https://www.iso.org/iso-3166-country-codes.html) for non-US addresses|
 
-### Response Parameters
+## Response Parameters
 | JSON Element | XML Element  | Always<br>Returned| Type | Max Length | Description
 |---|---|---|---|---|---|
 | `provider_id` | `ProviderId`|yes |string|10|a 4-digit identifier will be returned for each provider.|
@@ -57,7 +54,7 @@ Request should be submitted to the API URL using the GET command.  (The POST com
 |`location_type`|`LocationType`|yes|string|40|This field will contain the value ‘residential’ or ‘business’ if the provider characterizes the location.  Otherwise a value of ‘unknown’ will be returned.|
 |`site_status`|`SiteStatus`|yes|string|20|For MSO providers, this will contain one of the values in the table below:|
 
-#### SiteStatus values
+### SiteStatus values
 |Value|Description  |
 |--|--|
 |`none`	  |  Indicates that the MSO did not specify a site status  |
@@ -67,11 +64,11 @@ Request should be submitted to the API URL using the GET command.  (The POST com
 |`survey_req`|Indicates the MSO must conduct additional analysis to determine if the site can be served|
 |`proximity`|Indicates that the MSO serves the general area such as the 5-digit ZIP code or locations within a configurable distance (such as 60-feet or 200-feet).  The MSO should be contacted for additional information about the serviceability of a location identified as ‘proximity’.|
 
-## Sample Messages
+# Sample Messages
 
 The following examples can be used for troubleshooting or developing against the API directly. The SDK's automatically serialize request and response objects, construct the url, and manage headers.
 
-### Request Examples
+## Request Examples
 
 The following examples show a request to the QA environment using:
 * a client-id of **123456**
@@ -79,14 +76,13 @@ The following examples show a request to the QA environment using:
 
 *Important:  It is not possible to run the sample requests as-is.  Call-specific parameters such as client-id must be replaced with your own values.*
 
-#### JSON Request
+JSON
 ```
 GET https://api.qa.kyrioconnectionsuite.com/business/api/v1/serviceability?address_line1=123%20E%20Main%20St&address_line2=Suite%203&city=Louisville&state=CO&postal_code=80021
 client-id: 123456
 accept: application/json
 ```
-
-#### XML Request
+XML
 ```
 GET 
 https://api.qa.kyrioconnectionsuite.com/business/api/v1/serviceability?address_line1=123%20E%20Main%20St&address_line2=Suite%203&city=Louisville&state=CO&postal_code=80021 
@@ -94,11 +90,11 @@ client-id: 123456
 accept: application/xml
 ```
 
-### Response Examples
+## Response Examples
 
 The following examples show potential responses.  Note that successful responses use HTTP status code 200.
 
-#### Response containing a single provider
+### Response containing a single provider
 JSON
 ```
 [
@@ -123,7 +119,7 @@ XML
 	</ServiceabilityResult>
 </ArrayOfServiceabilityResult> 
 ```
-#### Response containing multiple providers
+### Response containing multiple providers
 JSON
 ```
 [
@@ -164,7 +160,7 @@ XML
 ```
 
 
-#### Response containing no providers
+### Response containing no providers
 JSON
 ```
 []
@@ -174,7 +170,7 @@ XML
 <ArrayOfServiceabilityResult/>
 ```
 
-#### Error Responses
+### Error Responses
 An error response will contain a non-200 HTTP status code and an informational message as a string.  Please see the next section for a list of HTTP status codes.
 
 JSON
@@ -186,7 +182,7 @@ XML
 ```
 <string>Bad Request: Missing address_line1 parameter</string>
 ```
-### HTTP STATUS CODES & ERROR MESSAGES
+## HTTP STATUS CODES & ERROR MESSAGES
 The table below lists the various errors that may be contained in the response.
 
 |HTTP Status Code|Message|Examples|
@@ -200,7 +196,7 @@ The table below lists the various errors that may be contained in the response.
 |`500` |Server Error||
 |`504` |Timeout||
 
-### Provider IDs
+## Provider IDs
 The following table lists the four-digit ID for participating cable providers (MSOs). This ID corresponds to the provider_id value contained in the response message.  Although some MSOs have merged (such as Charter, Time Warner Cable & Bright House Network), the legacy companies are still represented individually in this system.  Over time, these will likely merge into a single ID.
 
 |Provider ID|Cable Company Name|
