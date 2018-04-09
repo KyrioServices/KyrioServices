@@ -2,7 +2,6 @@
 The 10,000 foot view of the Kyrio API
 
 ## Overview
-OVERVIEW
 The Kyrio Connection Suite (KCS) is a digital commerce tool that allows users to identify which multisystem operators (MSOs) may offer voice, video, data or other services to a particular business address; obtain additional details about available cable services from MSOs; and identify providers of and details about other business services as may be offered from time to time.  
 
 This focus of this specification is the Cable Business Serviceability API which allows an authorized user to identify the cable company or companies that serve a specific business address.
