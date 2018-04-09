@@ -20,9 +20,9 @@ In order to use the API, you will need an account with Kyrio. Please contact Kyr
 ## SDK's
 You can use our available SDK's that are available in C#, Java, and Node. This manages serialization/deserialization, URL management, API version and so forth.
 
-* C#
-* Java
-* NodeJS
+* [C#](https://github.com/KyrioServices/kyrio-services-sdk-dotnet ".Net SDK")
+* [Java](https://github.com/KyrioServices/kyrio-services-sdk-java "Java SDK")
+* [NodeJS](https://github.com/KyrioServices/kyrio-services-sdk-node "Node SDK")
 
 ## Submitting Requests Directly
 You may also code directly against the API without using the SDK if you prefer.
