@@ -26,7 +26,7 @@ You can use our available SDK's that are available in C#, Java, and Node. This m
 
 ## Submitting Requests Directly
 You may also code directly against the API without using the SDK if you prefer.
-Request should be submitted to the following location using the GET command.  (Note: The POST command cannot be used.)
+Request should be submitted to the API URL using the GET command.  (The POST command cannot be used.)
 
 ## API Description
 
