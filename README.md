@@ -189,34 +189,35 @@ XML
 ```
 ### HTTP STATUS CODES & ERROR MESSAGES
 The table below lists the various errors that may be contained in the response.
+
 |HTTP Status Code|Message|Examples|
 |----|----|---|
-|`200`|Success|
-|`400`|Bad Request: {additional details}|Missing address_line1 parameter|
-|`401`|Unauthorized|
-|`403`|Forbidden|
-|`404`|Not Found|
-|`405`|Method Not Allowed|
-|`500`|Server Error|
-|`504`|Timeout|
+|`200` |Success||
+|`400` |Bad Request: {additional details}|Missing address_line1 parameter||
+|`401` |Unauthorized||
+|`403` |Forbidden||
+|`404` |Not Found||
+|`405` |Method Not Allowed||
+|`500` |Server Error||
+|`504` |Timeout||
 
 ### Provider IDs
 The following table lists the four-digit ID for participating cable providers (MSOs). This ID corresponds to the provider_id value contained in the response message.  Although some MSOs have merged (such as Charter, Time Warner Cable & Bright House Network), the legacy companies are still represented individually in this system.  Over time, these will likely merge into a single ID.
 
 |Provider ID|Cable Company Name|
 |---|---|
-`1021`	|Armstrong
-`1028`	|Atlantic Broadband
-`1022`	|BendBroadband
-`1017`	|Bright House
-`1016`	|Cable ONE
-`1015`	|Cablevision
-`1011`	|Charter
-`1005`	|Comcast
-`1010`	|Cox
-`1024`	|Massillion Cable (aka MCTV)
-`1014`	|Mediacom
-`1030`	|MetroCast
-`1025`	|Midco
-`1018`	|Suddenlink
-`1002`	|Time Warner Cable
+|`1021`	|Armstrong|
+|`1028`	|Atlantic Broadband|
+|`1022`	|BendBroadband|
+|`1017`	|Bright House|
+|`1016`	|Cable ONE|
+|`1015`	|Cablevision|
+|`1011`	|Charter|
+|`1005`	|Comcast|
+|`1010`	|Cox|
+|`1024`	|Massillion Cable (aka MCTV)|
+|`1014`	|Mediacom|
+|`1030`	|MetroCast|
+|`1025`	|Midco|
+|`1018`	|Suddenlink|
+|`1002`	|Time Warner Cable|
