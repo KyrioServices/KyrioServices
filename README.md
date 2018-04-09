@@ -67,3 +67,156 @@ Request should be submitted to the following location using the GET command.  (N
 |`off_net`|Indicates the MSO has previously surveyed the site and determined it cannot be served|
 |`survey_req`|Indicates the MSO must conduct additional analysis to determine if the site can be served|
 |`proximity`|Indicates that the MSO serves the general area such as the 5-digit ZIP code or locations within a configurable distance (such as 60-feet or 200-feet).  The MSO should be contacted for additional information about the serviceability of a location identified as ‘proximity’.|
+
+## Sample Messages
+
+The following examples can be used for troubleshooting or developing against the API directly. The SDK's automatically serialize request and response objects, construct the url, and manage headers.
+
+### Request Examples
+
+The following examples show a request to the QA environment using:
+* a client-id of **123456**
+* a business address of **123 E Main St, Suite 3, Louisville, CO 80021**.
+
+*Important:  It is not possible to run the sample requests as-is.  Call-specific parameters such as client-id must be replaced with your own values.*
+
+#### JSON Request
+```
+GET https://api.qa.kyrioconnectionsuite.com/business/api/v1/serviceability?address_line1=123%20E%20Main%20St&address_line2=Suite%203&city=Louisville&state=CO&postal_code=80021
+client-id: 123456
+accept: application/json
+```
+
+#### XML Request
+```
+GET 
+https://api.qa.kyrioconnectionsuite.com/business/api/v1/serviceability?address_line1=123%20E%20Main%20St&address_line2=Suite%203&city=Louisville&state=CO&postal_code=80021 
+client-id: 123456
+accept: application/xml
+```
+
+### Response Examples
+
+The following examples show potential responses.  Note that successful responses use HTTP status code 200.
+
+#### Response containing a single provider
+JSON
+```
+[
+ {
+ "provider_id":"1005",
+ "provider":"Comcast",
+ "location_id":"123Ab5",
+ "location_type":"business",
+ "site_status":"on_net"
+ }
+]
+```
+XML
+```
+<ArrayOfServiceabilityResult>
+	<ServiceabilityResult>
+		<ProviderId>1005</ProviderId>	
+		<Provider>Comcast</Provider>	
+		<LocationId>123Ab5</LocationId>
+ 		<LocationType>business</LocationType>
+		<SiteStatus>on_net</SiteStatus>
+	</ServiceabilityResult>
+</ArrayOfServiceabilityResult> 
+```
+#### Response containing multiple providers
+JSON
+```
+[
+	{
+		"provider_id":"1011",
+		"provider":"Charter",
+		"location_id":"11299833",
+		"location_type":"business",
+		"site_status":"near_net"	
+	},
+	{
+		"provider_id":"1005",
+		"provider":"Comcast",
+		"location_id":"123Ab5",
+		"location_type":"business",
+		"site_status":"on_net"	
+	}
+] 
+```
+XML
+```
+<ArrayOfServiceabilityResult>
+	<ServiceabilityResult>
+		<ProviderId>1011</ProviderId>	
+		<Provider>Charter</Provider>	
+		<LocationId>11299833</LocationId>
+ 		<LocationType>business</LocationType>
+		<SiteStatus>near_net</SiteStatus>
+	</ServiceabilityResult>
+	<ServiceabilityResult>
+	      <ProviderId>1005</ProviderId>	
+		<Provider>Comcast</Provider>	
+		<LocationId>123Ab5</LocationId>
+ 		<LocationType>business</LocationType>
+		<SiteStatus>on_net</SiteStatus>
+	</ServiceabilityResult>
+</ArrayOfServiceabilityResult>
+```
+
+
+#### Response containing no providers
+JSON
+```
+[]
+```
+XML
+```
+<ArrayOfServiceabilityResult/>
+```
+
+#### Error Responses
+An error response will contain a non-200 HTTP status code and an informational message as a string.  Please see the next section for a list of HTTP status codes.
+
+JSON
+```
+Bad Request: Missing address_line1 parameter
+```
+
+XML
+```
+<string>Bad Request: Missing address_line1 parameter</string>
+```
+### HTTP STATUS CODES & ERROR MESSAGES
+The table below lists the various errors that may be contained in the response.
+|HTTP Status Code|Message|Examples|
+|----|----|---|
+|`200`|Success|
+|`400`|Bad Request: {additional details}|Missing address_line1 parameter|
+|`401`|Unauthorized|
+|`403`|Forbidden|
+|`404`|Not Found|
+|`405`|Method Not Allowed|
+|`500`|Server Error|
+|`504`|Timeout|
+
+### Provider IDs
+The following table lists the four-digit ID for participating cable providers (MSOs). This ID corresponds to the provider_id value contained in the response message.  Although some MSOs have merged (such as Charter, Time Warner Cable & Bright House Network), the legacy companies are still represented individually in this system.  Over time, these will likely merge into a single ID.
+
+|Provider ID|Cable Company Name|
+|---|---|
+`1021`	|Armstrong
+`1028`	|Atlantic Broadband
+`1022`	|BendBroadband
+`1017`	|Bright House
+`1016`	|Cable ONE
+`1015`	|Cablevision
+`1011`	|Charter
+`1005`	|Comcast
+`1010`	|Cox
+`1024`	|Massillion Cable (aka MCTV)
+`1014`	|Mediacom
+`1030`	|MetroCast
+`1025`	|Midco
+`1018`	|Suddenlink
+`1002`	|Time Warner Cable
