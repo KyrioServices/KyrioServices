@@ -51,7 +51,7 @@ Request should be submitted to the API URL using the GET command.  (The POST com
 | `provider_id` | `ProviderId`|yes |string|10|a 4-digit identifier will be returned for each provider.|
 |`provider`|`Provider`|yes|string|30|Company name associated with the provider id|
 |`location_id`|`LocationId`||string|40|Only returned if the provider has assigned a unique location identifier (aka housekey) for the address|
-|`location_type`|`LocationType`|yes|string|40|This field will contain the value ‘residential’ or ‘business’ if the provider characterizes the location.  Otherwise a value of ‘unknown’ will be returned.|
+|`location_type`|`LocationType`|yes|string|20|This field will contain the value ‘residential’ or ‘business’ if the provider characterizes the location.  Otherwise a value of ‘unknown’ will be returned.|
 |`site_status`|`SiteStatus`|yes|string|20|For MSO providers, this will contain one of the values in the table below:|
 
 ### SiteStatus values
